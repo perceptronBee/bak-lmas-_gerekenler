@@ -1,11 +1,11 @@
-# 🚀 Gelişmiş Bilgisayarlı Görü Veri Boru Hattı (Data Pipeline)
+#  Gelişmiş Bilgisayarlı Görü Veri Boru Hattı
 
-## 📌 Genel Bakış
+##  Genel Bakış
 Bu doküman, modelimizin eğitiminde kullanılacak verinin toplanması, analiz edilmesi, işlenmesi ve modele beslenmesi süreçlerindeki mühendislik standartlarımızı belirler. Amacımız; veri kalitesini maksimize etmek, donanım kaynaklarını (GPU/CPU) en verimli şekilde kullanmak ve model doğruluğunu akademik (SOTA) seviyelere çıkarmaktır.
 
 ---
 
-## 🗂 1. Veri Kaynakları ve Toplama (Sourcing)
+## 🗂 1. Veri Kaynakları ve Toplama
 Sıfırdan veri toplamak yerine, öncelikle literatürdeki ve açık kaynaklardaki veri setleri taranacaktır.
 * **Kullanılacak Platformlar:**
   * [Roboflow Universe](https://universe.roboflow.com/): Hazır etiketli nesne tespiti verileri için.
@@ -16,7 +16,7 @@ Sıfırdan veri toplamak yerine, öncelikle literatürdeki ve açık kaynaklarda
 
 ---
 
-## 📊 2. Keşifsel Veri Analizi (EDA & Veri Temizliği)
+##  2. Keşifsel Veri Analizi (EDA & Veri Temizliği)
 Veriyi modele vermeden önce karakteristiği analiz edilmeli ve olası darboğazlar tespit edilmelidir.
 * **Sınıf Dengesi (Class Imbalance):** Azınlık ve çoğunluk sınıflarının dağılımı kontrol edilecek.
 * **Çözünürlük ve En-Boy Oranı:** Görüntülerin ve *Bounding Box*'ların boyut dağılımları analiz edilecek (Gerekirse Anchor Box optimizasyonu için K-Means uygulanacak).
@@ -24,14 +24,14 @@ Veriyi modele vermeden önce karakteristiği analiz edilmeli ve olası darboğaz
 
 ---
 
-## ⚡ 3. Donanım ve I/O Optimizasyonu
+##  3. Donanım ve I/O Optimizasyonu
 GPU'nun veri beklerken boşta kalmasını (GPU starvation) engellemek için veri yükleme adımları optimize edilecektir.
 * **Dataloader Ayarları:** CPU çekirdek sayısına uygun `num_workers` değeri belirlenecek ve RAM-VRAM transferini hızlandırmak için `pin_memory=True` kullanılacak.
 * **Veri Formatı:** Gerekli durumlarda on binlerce ham görüntü dosyasını tek tek okumak yerine; ardışık (sequential) okuma yapabilen **LMDB**, **TFRecord** veya **WebDataset** formatlarına geçiş yapılacaktır.
 
 ---
 
-## 🎨 4. Veri Zenginleştirme (Data Augmentation)
+##  4. Veri Zenginleştirme (Data Augmentation)
 Modelin ezberlemesini (overfitting) önlemek ve genelleme yeteneğini artırmak için endüstri standardı araçlar kullanılacaktır.
 * **Kütüphane:** PyTorch'un varsayılan modülleri yerine, daha hızlı çalışan ve Bounding Box'ları otomatik güncelleyen **Albumentations** kütüphanesi tercih edilecektir.
 * **Stratejiler:**
@@ -41,7 +41,7 @@ Modelin ezberlemesini (overfitting) önlemek ve genelleme yeteneğini artırmak 
 
 ---
 
-## 🚀 5. İleri Seviye Stratejiler (Faz 2)
+##  5. İleri Seviye Stratejiler (Faz 2)
 Temel (Baseline) model eğitildikten sonra, model başarımını maksimize etmek için aşağıdaki yöntemler uygulanacaktır.
 
 * **Test-Time Augmentation (TTA):** Çıkarım (inference) aşamasında, görüntünün farklı varyasyonlarının tahmin ortalaması alınarak doğruluk artırılacak.
@@ -51,7 +51,7 @@ Temel (Baseline) model eğitildikten sonra, model başarımını maksimize etmek
 
 ---
 
-## ✅ Aksiyon Planı ve Görevler
+##  Aksiyon Planı ve Görevler
 - [ ] Uygun açık kaynak veri setlerinin bulunması ve indirilmesi.
 - [ ] EDA scriptlerinin yazılması (Sınıf dağılımı ve BBox analizi).
 - [ ] Albumentations tabanlı veri zenginleştirme pipeline'ının kodlanması.
