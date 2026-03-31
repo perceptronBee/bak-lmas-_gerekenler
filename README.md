@@ -5,7 +5,7 @@ Bu doküman, modelimizin eğitiminde kullanılacak verinin toplanması, analiz e
 
 ---
 
-## 🗂 1. Veri Kaynakları ve Toplama
+##  1. Veri Kaynakları ve Toplama
 Sıfırdan veri toplamak yerine, öncelikle literatürdeki ve açık kaynaklardaki veri setleri taranacaktır.
 * **Kullanılacak Platformlar:**
   * [Roboflow Universe](https://universe.roboflow.com/): Hazır etiketli nesne tespiti verileri için.
